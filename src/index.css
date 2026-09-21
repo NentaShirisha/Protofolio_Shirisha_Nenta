@@ -1,0 +1,266 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #060404;
+  --bg-soft: #0c0808;
+  --panel: #100b0b;
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #f5efe9;
+  --text-dim: #a89c95;
+  --accent: #ff4d2e;
+  --accent-2: #ff8a3d;
+  --accent-glow: rgba(255, 77, 46, 0.55);
+  --font-display: "Space Grotesk", "Sora", sans-serif;
+  --font-body: "Sora", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: #0a0a0a;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--accent), var(--accent-2));
+  border-radius: 4px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Glow / neon utilities ---------- */
+.text-glow {
+  text-shadow: 0 0 24px var(--accent-glow), 0 0 60px rgba(255, 77, 46, 0.25);
+}
+
+.glow-ring {
+  box-shadow: 0 0 40px 6px var(--accent-glow);
+}
+
+/* ---------- Particle field ---------- */
+.particle-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent-2);
+  opacity: 0.55;
+  filter: blur(0.5px);
+  animation: drift linear infinite;
+}
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(var(--dx, 20px), var(--dy, -220px), 0);
+    opacity: 0;
+  }
+}
+
+/* ---------- Orbiting tech icons ---------- */
+@keyframes float-y {
+  0%, 100% {
+    transform: translateY(0px) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-14px) rotate(var(--rot, 0deg));
+  }
+}
+.float-card {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+/* ---------- Infinity light trail ---------- */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+.trail-path {
+  stroke-dasharray: 12 18;
+  animation: dash-flow 18s linear infinite;
+}
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px var(--accent)) drop-shadow(0 0 18px var(--accent-glow));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px var(--accent-2)) drop-shadow(0 0 34px var(--accent-glow));
+  }
+}
+.trail-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* ---------- Silhouette figure ---------- */
+@keyframes breathe {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+.silhouette {
+  animation: breathe 7s ease-in-out infinite;
+}
+
+.portrait-inner {
+  transition: transform 0.25s ease-out;
+  transform-style: preserve-3d;
+}
+
+@keyframes aura-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 1;
+  }
+}
+.aura-pulse {
+  animation: aura-pulse 4s ease-in-out infinite;
+}
+
+@keyframes aura-pulse-x {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.12);
+    opacity: 1;
+  }
+}
+.aura-pulse-x {
+  animation: aura-pulse-x 4s ease-in-out infinite;
+}
+
+/* elliptical vignette so the photo dissolves into the scene instead of
+   reading as a hard-edged rectangle */
+.portrait-mask {
+  -webkit-mask-image: radial-gradient(ellipse 78% 96% at 50% 38%, black 82%, transparent 99%);
+  mask-image: radial-gradient(ellipse 78% 96% at 50% 38%, black 82%, transparent 99%);
+}
+
+@keyframes portrait-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+.portrait-enter {
+  animation: portrait-reveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ---------- Coverflow gallery ---------- */
+.coverflow-stage {
+  perspective: 1400px;
+  perspective-origin: 50% 30%;
+}
+.coverflow-floor {
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 77, 46, 0.35), transparent 60%);
+  filter: blur(2px);
+}
+
+/* ---------- Marquee ---------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+/* ---------- Music toggle equalizer ---------- */
+@keyframes eq-bar {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 14px;
+  }
+}
+
+/* ---------- Case study fade-in ---------- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in 0.35s ease;
+}
+
+/* ---------- Grain overlay ---------- */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
