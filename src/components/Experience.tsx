@@ -29,7 +29,6 @@ export default function Experience() {
   return (
     <section id="experience" className="relative max-w-6xl mx-auto px-6 py-28 md:py-36">
       <SectionHeading
-        index="02"
         eyebrow="Experience"
         title={
           <>
@@ -64,9 +63,6 @@ export default function Experience() {
                       </span>
                     </p>
                   </div>
-                  <span className="font-display text-6xl font-semibold text-white/[0.06] leading-none hidden md:block select-none">
-                    0{i + 1}
-                  </span>
                 </div>
                 <ul className="mt-5 space-y-2.5">
                   {job.bullets.map((b) => (

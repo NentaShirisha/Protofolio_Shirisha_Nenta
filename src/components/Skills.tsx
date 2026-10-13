@@ -19,7 +19,6 @@ export default function Skills() {
   return (
     <section id="skills" className="relative max-w-6xl mx-auto px-6 py-28 md:py-36">
       <SectionHeading
-        index="04"
         eyebrow="Toolkit"
         title={
           <>

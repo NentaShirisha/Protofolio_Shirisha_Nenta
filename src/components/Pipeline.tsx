@@ -10,7 +10,6 @@ export default function Pipeline({ steps, hue, compact = false }: { steps: strin
             className="pipeline-node"
             style={{ animationDuration: `${cycle}s`, animationDelay: `${i * 0.55}s` }}
           >
-            <span className="font-mono text-[10px] opacity-60 mr-1.5">{String(i + 1).padStart(2, "0")}</span>
             {s}
           </span>
           {i < steps.length - 1 && (

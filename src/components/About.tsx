@@ -8,7 +8,6 @@ export default function About() {
   return (
     <section id="about" className="relative max-w-6xl mx-auto px-6 py-28 md:py-36">
       <SectionHeading
-        index="01"
         eyebrow="About"
         title={
           <>

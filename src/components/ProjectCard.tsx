@@ -4,9 +4,9 @@ import Pipeline from "./Pipeline";
 import { ICONS } from "../icons";
 import type { Project } from "../data";
 
-type Props = { project: Project; index: number; onOpen: () => void; style?: CSSProperties; className?: string };
+type Props = { project: Project; onOpen: () => void; style?: CSSProperties; className?: string };
 
-export default function ProjectCard({ project: p, index, onOpen, style, className = "" }: Props) {
+export default function ProjectCard({ project: p, onOpen, style, className = "" }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const Icon = ICONS[p.icon];
 
@@ -44,8 +44,7 @@ export default function ProjectCard({ project: p, index, onOpen, style, classNam
         <div className="project-dots" />
         <div className="project-orb" />
         <div className="relative z-10 flex items-start justify-between">
-          <span className="font-mono text-xs text-white/60">{String(index + 1).padStart(2, "0")}</span>
-          <div className="flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-2">
             {p.isNew && <span className="badge-new">New</span>}
             {p.repo && (
               <span className="w-8 h-8 rounded-full bg-black/30 border border-white/10 flex items-center justify-center">

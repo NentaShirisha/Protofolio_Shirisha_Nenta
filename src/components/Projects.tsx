@@ -15,7 +15,6 @@ export default function Projects() {
   return (
     <section id="projects" className="relative max-w-6xl mx-auto px-6 py-28 md:py-36">
       <SectionHeading
-        index="03"
         eyebrow="Selected work"
         title={
           <>
@@ -47,7 +46,6 @@ export default function Projects() {
           <ProjectCard
             key={`${filter}-${p.id}`}
             project={p}
-            index={projects.indexOf(p)}
             onOpen={() => setOpenId(p.id)}
             className={`card-enter ${p.featured ? "md:col-span-2" : ""}`}
             style={{ animationDelay: `${i * 70}ms` }}

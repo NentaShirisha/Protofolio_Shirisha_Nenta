@@ -36,7 +36,6 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto">
         <Reveal className="text-center max-w-4xl mx-auto">
           <p className="eyebrow justify-center">
-            <span className="font-mono text-[var(--accent)]">05</span>
             <span className="eyebrow-line" />
             Contact
           </p>

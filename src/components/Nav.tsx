@@ -125,7 +125,6 @@ export default function Nav() {
               className="mobile-link font-display text-5xl font-semibold tracking-tight"
               style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
             >
-              <span className="font-mono text-sm text-[var(--accent)] mr-3 align-top">0{i + 1}</span>
               {l.label}
             </a>
           ))}

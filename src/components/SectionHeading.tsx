@@ -2,19 +2,17 @@ import type { ReactNode } from "react";
 import Reveal from "./Reveal";
 
 type Props = {
-  index: string;
   eyebrow: string;
   title: ReactNode;
   subtitle?: ReactNode;
   align?: "left" | "center";
 };
 
-export default function SectionHeading({ index, eyebrow, title, subtitle, align = "left" }: Props) {
+export default function SectionHeading({ eyebrow, title, subtitle, align = "left" }: Props) {
   const center = align === "center";
   return (
     <Reveal className={`mb-12 md:mb-16 ${center ? "text-center mx-auto" : ""} max-w-3xl`}>
       <p className={`eyebrow ${center ? "justify-center" : ""}`}>
-        <span className="font-mono text-[var(--accent)]">{index}</span>
         <span className="eyebrow-line" />
         {eyebrow}
       </p>
