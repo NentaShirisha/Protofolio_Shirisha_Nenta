@@ -1,24 +1,31 @@
-import { Award } from "lucide-react";
+import Reveal from "./Reveal";
+import { ICONS } from "../icons";
 import { certifications } from "../data";
 
 export default function Certifications() {
   return (
-    <section className="relative max-w-5xl mx-auto px-6 py-16">
-      <div className="reveal mb-8">
-        <p className="uppercase tracking-[0.3em] text-xs text-[var(--accent-2)] mb-3">Certifications &amp; Achievements</p>
-        <h2 className="font-display text-3xl md:text-4xl font-bold">Proof of the process</h2>
-      </div>
-      <div className="grid sm:grid-cols-3 gap-4">
-        {certifications.map((c, i) => (
-          <div
-            key={c}
-            className="reveal p-5 rounded-2xl border border-white/10 bg-white/[0.03] flex items-start gap-3"
-            style={{ transitionDelay: `${i * 80}ms` }}
-          >
-            <Award size={18} className="text-[var(--accent-2)] shrink-0 mt-0.5" />
-            <p className="text-sm text-[var(--text-dim)]">{c}</p>
-          </div>
-        ))}
+    <section className="relative max-w-6xl mx-auto px-6 pb-28 md:pb-36">
+      <Reveal>
+        <p className="eyebrow mb-6">
+          <span className="eyebrow-line" />
+          Certifications &amp; achievements
+        </p>
+      </Reveal>
+      <div className="grid md:grid-cols-3 gap-4">
+        {certifications.map((c, i) => {
+          const Icon = ICONS[c.icon];
+          return (
+            <Reveal key={c.title} delay={i * 90}>
+              <div className="card card-hover cert-card p-6 h-full flex gap-4 items-start">
+                <div className="icon-tile icon-tile-sm">{Icon && <Icon size={18} />}</div>
+                <div>
+                  <p className="font-medium leading-snug">{c.title}</p>
+                  <p className="text-sm text-[var(--text-dim)] mt-1">{c.detail}</p>
+                </div>
+              </div>
+            </Reveal>
+          );
+        })}
       </div>
     </section>
   );

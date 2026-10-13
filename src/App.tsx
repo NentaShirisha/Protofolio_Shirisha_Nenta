@@ -1,35 +1,50 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Loader from "./components/Loader";
+import Cursor from "./components/Cursor";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
+import TechMarquee from "./components/TechMarquee";
 import About from "./components/About";
-import Skills from "./components/Skills";
 import Experience from "./components/Experience";
-import ProjectsCoverflow from "./components/ProjectsCoverflow";
+import Projects from "./components/Projects";
 import GithubMarquee from "./components/GithubMarquee";
+import Skills from "./components/Skills";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import MusicToggle from "./components/MusicToggle";
-import { useReveal } from "./hooks/useReveal";
+import ScrollProgress from "./components/ScrollProgress";
 
 function App() {
-  useReveal();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.body.classList.add("grain");
     return () => document.body.classList.remove("grain");
   }, []);
 
+  // Releases the paused hero entrance animations once the intro is gone.
+  const finishLoading = useCallback(() => {
+    document.documentElement.classList.add("ready");
+    setLoading(false);
+  }, []);
+
   return (
     <>
+      {loading && <Loader onDone={finishLoading} />}
+      <Cursor />
+      <ScrollProgress />
       <Nav />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <ProjectsCoverflow />
-      <GithubMarquee />
-      <Certifications />
-      <Contact />
+      <main className="relative z-[1]">
+        <Hero />
+        <TechMarquee />
+        <About />
+        <Experience />
+        <Projects />
+        <GithubMarquee />
+        <Skills />
+        <Certifications />
+        <Contact />
+      </main>
       <MusicToggle />
     </>
   );

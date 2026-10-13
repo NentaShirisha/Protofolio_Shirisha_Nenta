@@ -29,7 +29,7 @@ export default function MusicToggle() {
       <button
         onClick={toggle}
         aria-label={playing ? "Pause theme music" : "Play theme music"}
-        className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full border border-white/15 bg-[rgba(6,4,4,0.75)] backdrop-blur-sm flex items-center justify-center hover:border-[var(--accent)] transition glow-ring"
+        className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full border border-white/15 bg-[rgba(14,9,8,0.7)] backdrop-blur-md flex items-center justify-center hover:border-[var(--accent)] hover:scale-105 transition shadow-[0_10px_30px_-10px_rgba(255,90,54,0.6)]"
       >
         {playing ? (
           <span className="flex items-end gap-0.5 h-4" aria-hidden="true">
